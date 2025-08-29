@@ -1,0 +1,131 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: #faf8ef;
+}
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+h1 {
+  color: #776e65;
+}
+.container {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+h1 {
+  font-size: 4em;
+}
+.score-container {
+  color: #776e65;
+}
+#score {
+  font-weight: 600;
+}
+.grid {
+  width: 25em;
+  height: 25em;
+  background-color: #cdc1b5;
+  border: 5px solid #bbada0;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 0.5em;
+}
+.box {
+  width: 97.5px;
+  height: 97.5px;
+  border: 5px solid #bbada0;
+  font-size: 40px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cover-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #faf8ef;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#start-button {
+  background-color: #8f7a66;
+  padding: 1em 2em;
+  border: none;
+  border-radius: 0.5em;
+  font-size: 1em;
+  letter-spacing: 0.2px;
+  color: #ffffff;
+}
+.hide {
+  display: none;
+}
+
+.box-2 {
+  background-color: #ffeb3b; /* Bright Yellow */
+  color: #212121;
+}
+
+.box-4 {
+  background-color: #ff9800; /* Vivid Orange */
+  color: #ffffff;
+}
+
+.box-8 {
+  background-color: #f44336; /* Bright Red */
+  color: #ffffff;
+}
+
+.box-16 {
+  background-color: #e91e63; /* Hot Pink */
+  color: #ffffff;
+}
+
+.box-32 {
+  background-color: #9c27b0; /* Purple */
+  color: #ffffff;
+}
+
+.box-64 {
+  background-color: #673ab7; /* Deep Purple */
+  color: #ffffff;
+}
+
+.box-128 {
+  background-color: #3f51b5; /* Blue */
+  color: #ffffff;
+}
+
+.box-256 {
+  background-color: #2196f3; /* Bright Blue */
+  color: #ffffff;
+}
+
+.box-512 {
+  background-color: #00bcd4; /* Cyan */
+  color: #ffffff;
+}
+
+.box-1024 {
+  background-color: #4caf50; /* Green */
+  color: #ffffff;
+}
+
+.box-2048 {
+  background-color: #8bc34a; /* Lime Green */
+  color: #212121;
+}
