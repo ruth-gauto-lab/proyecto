@@ -4,6 +4,8 @@ const container = document.querySelector(".container");
 const coverScreen = document.querySelector(".cover-screen");
 const result = document.getElementById("result");
 const overText = document.getElementById("over-text");
+const musica = document.getElementById("musica");
+const milestoneMessage = document.getElementById("milestone-message");
 
 let matrix,
   score,
@@ -82,6 +84,8 @@ const gameOverCheck = () => {
     overText.classList.remove("hide");
     result.innerText = `Puntuacion final: ${score}`;
     startButton.innerText = "Jugar de nuevo";
+    musica.pause();
+    musica.currentTime = 0;
   }
 };
 
@@ -124,6 +128,20 @@ const generateFour = () => {
 };
 
 const removeZero = (arr) => arr.filter((num) => num);
+
+const showMilestone = (value) => {
+  milestoneMessage.innerText = ` Alcanzaste ${value}!`;
+  milestoneMessage.classList.remove("hide");
+
+  milestoneMessage.style.animation = "none";
+  milestoneMessage.offsetHeight; 
+  milestoneMessage.style.animation = null;
+
+  setTimeout(() => {
+    milestoneMessage.classList.add("hide");
+  }, 2000);
+};
+
 const checker = (arr, reverseArr = false) => {
   arr = reverseArr ? removeZero(arr).reverse() : removeZero(arr);
 
@@ -132,6 +150,10 @@ const checker = (arr, reverseArr = false) => {
       arr[i] += arr[i + 1];
       arr[i + 1] = 0;
       score += arr[i];
+
+      if ([128, 256, 512, 1024, 2048].includes(arr[i])) {
+        showMilestone(arr[i]);
+      }
     }
   }
 
@@ -164,13 +186,7 @@ const slideDown = () => {
       element.classList.add("box", `box-${matrix[j][i]}`);
     }
   }
-
-  let decision = Math.random() > 0.5 ? 1 : 0;
-  if (decision) {
-    setTimeout(generateFour, 200);
-  } else {
-    setTimeout(generateTwo, 200);
-  }
+  Math.random() > 0.5 ? setTimeout(generateFour, 200) : setTimeout(generateTwo, 200);
 };
 
 const slideUp = () => {
@@ -188,12 +204,7 @@ const slideUp = () => {
       element.classList.add("box", `box-${matrix[j][i]}`);
     }
   }
-  let decision = Math.random() > 0.5 ? 1 : 0;
-  if (decision) {
-    setTimeout(generateFour, 200);
-  } else {
-    setTimeout(generateTwo, 200);
-  }
+  Math.random() > 0.5 ? setTimeout(generateFour, 200) : setTimeout(generateTwo, 200);
 };
 
 const slideRight = () => {
@@ -211,12 +222,7 @@ const slideRight = () => {
       element.classList.add("box", `box-${matrix[i][j]}`);
     }
   }
-  let decision = Math.random() > 0.5 ? 1 : 0;
-  if (decision) {
-    setTimeout(generateFour, 200);
-  } else {
-    setTimeout(generateTwo, 200);
-  }
+  Math.random() > 0.5 ? setTimeout(generateFour, 200) : setTimeout(generateTwo, 200);
 };
 
 const slideLeft = () => {
@@ -225,7 +231,6 @@ const slideLeft = () => {
     for (let j = 0; j < columns; j++) {
       num.push(matrix[i][j]);
     }
-
     num = checker(num);
     for (let j = 0; j < columns; j++) {
       matrix[i][j] = num[j];
@@ -235,12 +240,7 @@ const slideLeft = () => {
       element.classList.add("box", `box-${matrix[i][j]}`);
     }
   }
-  let decision = Math.random() > 0.5 ? 1 : 0;
-  if (decision) {
-    setTimeout(generateFour, 200);
-  } else {
-    setTimeout(generateTwo, 200);
-  }
+  Math.random() > 0.5 ? setTimeout(generateFour, 200) : setTimeout(generateTwo, 200);
 };
 
 document.addEventListener("keyup", (e) => {
@@ -269,7 +269,7 @@ grid.addEventListener("touchmove", (event) => {
     let diffX = touchX - initialX;
     let diffY = touchY - initialY;
     if (Math.abs(diffY) > Math.abs(diffX)) {
-      swipeDirection = diffX > 0 ? "down" : "up";
+      swipeDirection = diffY > 0 ? "down" : "up";
     } else {
       swipeDirection = diffX > 0 ? "right" : "left";
     }
@@ -303,6 +303,9 @@ const comenzarJuego = () => {
   createGrid();
   generateTwo();
   generateTwo();
+
+  musica.volume = 0.4;
+  musica.play();
 };
 
 startButton.addEventListener("click", () => {
