@@ -82,6 +82,7 @@ const gameOverCheck = () => {
     coverScreen.classList.remove("hide");
     container.classList.add("hide");
     overText.classList.remove("hide");
+    overText.classList.add("blink");
     result.innerText = `Puntuacion final: ${score}`;
     startButton.innerText = "Jugar de nuevo";
     musica.pause();
@@ -300,6 +301,10 @@ const comenzarJuego = () => {
   ];
   container.classList.remove("hide");
   coverScreen.classList.add("hide");
+
+  overText.classList.remove("blink");
+  overText.classList.add("hide");
+
   createGrid();
   generateTwo();
   generateTwo();
@@ -307,6 +312,7 @@ const comenzarJuego = () => {
   musica.volume = 0.4;
   musica.play();
 };
+
 
 startButton.addEventListener("click", () => {
   comenzarJuego();
